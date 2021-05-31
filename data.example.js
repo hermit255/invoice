@@ -1,7 +1,9 @@
 const pages = [
   {
-    ym: "2021/5",
+    title: "yyyy年x月度",
+    date: "2021/1/1",
     sales_tax_rate: 10,
+    message: "test message",
     rows: [
       {
         label: "請求科目1",
@@ -16,3 +18,7 @@ const pages = [
     ],
   },
 ];
+
+const page = pages[pages.length - 1];
+/* to set specific page */
+// const page = pages.find((p) => p.date == "2021/2/1");

@@ -1,12 +1,21 @@
 class Page {
   constructor(obj, from, to, bank) {
-    this.ym = {
-      class: "ym",
-      value: obj.ym,
+    console.log(obj);
+    this.title = {
+      class: "title",
+      value: obj.title,
+    };
+    this.date = {
+      class: "date",
+      value: obj.date,
     };
     this.sales_tax_rate = {
       class: "sales_tax_rate",
       value: obj.sales_tax_rate,
+    };
+    this.message = {
+      class: "message",
+      value: obj.message,
     };
     this.from = new From(from);
     this.to = new To(to);
@@ -53,7 +62,7 @@ class Page {
       if (v.class) {
         const node = d.querySelector("." + v.class);
         // console.log(name + ": " + v.value);
-        if (node && v.value) {
+        if (node) {
           node.innerHTML = v.value.toLocaleString();
         }
       }
