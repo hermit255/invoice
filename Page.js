@@ -30,7 +30,7 @@ class Page {
     this.sales_tax_amount = {
       class: "sales_tax_amount",
       value: Math.floor(
-        (this.subtotal.value * this.sales_tax_rate.value) / 100
+        this.subtotal.value * (this.sales_tax_rate.value / 100)
       ),
     };
     this.withholding_tax_rate = {
@@ -40,7 +40,7 @@ class Page {
     this.withholding_tax_amount = {
       class: "withholding_tax_amount",
       value: Math.floor(
-        (this.subtotal.value * this.withholding_tax_rate.value) / 100
+        this.subtotal.value * (this.withholding_tax_rate.value / 100)
       ),
     };
     this.total = {
