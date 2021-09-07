@@ -1,0 +1,42 @@
+const data = [
+  {
+    tax_rate: 10,
+    // requires master object
+    you: master.you["key"],
+    partner: master.partner["key"],
+    bank: master.bank["key"],
+
+    // 'quotation' or 'invoice'
+    label: master.labels["quotation"],
+
+    // document created date
+    today: "2021/9/1",
+    // when sold
+    period: {
+      month: 9,
+      year: 2021,
+    },
+    // what sold
+    rows: [
+      {
+        label: "title",
+        quantity: 1,
+        price: 5000,
+      },
+    ],
+    message: "something",
+  },
+];
+
+/* Set adjast to show previous data. */
+const adjast = 0;
+const selected = data[data.length - 1 - adjast];
+
+const label = selected.label;
+const you = selected.you;
+const partner = selected.partner;
+const today = selected.today;
+const period = selected.period;
+const rows = selected.rows;
+const bank = selected.bank;
+const message = selected.message;
