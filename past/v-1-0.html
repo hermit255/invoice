@@ -12,7 +12,10 @@
 <body>
   <div class="container flex flex-col min-h-screen p-10">
     <h1 class="doc_title text-center underline text-2xl my-5">
+      <!--
       ご請求書
+      -->
+      お見積書
     </h1>
     <div class="header my-5">
       <div class="flex justify-between w-auto">
@@ -27,7 +30,10 @@
             <span class="title"> {表題} </span>
           </p>
           <p class="">
+            <!--
             下記の通りご請求申し上げます。
+            -->
+            下記の通りお見積り申し上げます。
           </p>
         </div>
         <div>
@@ -43,8 +49,12 @@
     <div class="grid grid-cols-1 justify-items-center flex-grow mt-10">
 
       <div class="flex justify-between w-auto w-10/12 mx-auto mb-5 ">
+        <!--
         <p class="text-xl font-bold"> 当月ご請求 ￥ <span class="amount"> {月次データ_請求額} </span> </p>
         <p> ご請求日 <span class="date"> {請求日} </span></p>
+        -->
+        <p class="text-xl font-bold"> お見積金額 ￥ <span class="amount"> {月次データ_請求額} </span> </p>
+        <p> 見積日 <span class="date"> {請求日} </span></p>
       </div>
       <table class="table-fixed w-10/12 mx-auto">
         <thead class="">
@@ -76,6 +86,7 @@
               <span class="sales_tax_amount"> {月次データ_消費税額} </span>
             </td>
           </tr>
+          <!--
           <tr>
             <td class="w-2/3 border bg-gray-200 text-center p-1">
               源泉徴収(<span class="withholding_tax_rate"> {月次データ_源泉徴収率} </span>%)
@@ -84,6 +95,7 @@
               -<span class="withholding_tax_amount"> {月次データ_源泉徴収額} </span>
             </td>
           </tr>
+          -->
           <tr>
             <td class="w-2/3 border bg-gray-200 text-center p-1">
               合計
@@ -110,7 +122,9 @@
           <span class="bank_account_name ml-5"> {請求元_口座名義} </span>
         </p>
       </div>
+      <!--
       <p class="my-2 pl-5"> ※恐れ入りますが、振込手数料は貴社ご負担にてお願い申し上げます。 </p>
+      -->
 
       <h5 class="font-bold w-full mt-5"> その他 </h5>
       <div class="border-2 p-3"> <span class="message"> {メッセージ} </span> </div>
