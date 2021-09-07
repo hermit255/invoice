@@ -1,0 +1,53 @@
+const master = {
+  you: {
+    one: {
+      name: "自社名または氏名",
+      zip: "000-0000",
+      address_1: "東京都 千代田区 XX 1-1-1",
+      address_2: "丸の内ビル 11階",
+      tel: "000-0000-0000",
+      mail: "xxxxx@yyy.zzz",
+    },
+  },
+
+  partner: {
+    one: {
+      name: "請求先企業名",
+    },
+  },
+
+  bank: {
+    sbi: {
+      name: "東京シティ銀行",
+      code: "0000",
+      branch: {
+        name: "千代田支店",
+        code: "000",
+      },
+      account: {
+        type: "type",
+        name: "ヤマダ タロウ",
+        code: "0000000",
+      },
+    },
+  },
+
+  labels: {
+    invoice: {
+      title: "ご請求書",
+      description: "下記の通りご請求申し上げます。",
+      statements: {
+        total: "当月ご請求金額",
+        date: "ご請求日",
+      },
+    },
+    quotation: {
+      title: "お見積書",
+      description: "下記の通りお見積り申し上げます。",
+      statements: {
+        total: "お見積金額",
+        date: "見積日",
+      },
+    },
+  },
+};

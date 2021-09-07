@@ -1,13 +1,11 @@
 const data = [
   {
     tax_rate: 10,
-    // requires master object
-    you: master.you["key"],
-    partner: master.partner["key"],
-    bank: master.bank["key"],
-
-    // 'quotation' or 'invoice'
-    label: master.labels["quotation"],
+    // key of master object
+    you: "key",
+    partner: "key",
+    bank: "key",
+    label: "quotation",
 
     // document created date
     today: "2021/9/1",
@@ -32,11 +30,11 @@ const data = [
 const adjast = 0;
 const selected = data[data.length - 1 - adjast];
 
-const label = selected.label;
-const you = selected.you;
-const partner = selected.partner;
+const label = master.labels[selected.label];
+const you = master.you[selected.you];
+const partner = master.partner[selected.partner];
 const today = selected.today;
 const period = selected.period;
 const rows = selected.rows;
-const bank = selected.bank;
+const bank = master.bank[selected.bank];
 const message = selected.message;
