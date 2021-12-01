@@ -36,6 +36,8 @@ class App extends React.Component {
             totalLabel={label.statements.total}
             dateLabel={label.statements.date}
             date={today}
+            taxRate={taxRate}
+            hasWithholdingTax={hasWithholdingTax}
             />
         </div>
         <div className="footer">
@@ -70,10 +72,10 @@ class Partner extends React.Component {
     const safe = !!name
     return (
       <div className={safe ? '' : 'text-red-500'}>
-        {zip &&
+        {!zip ? null :
         <p> 〒 <span className="to_zip"> {zip} </span> </p>
           }
-        {address_1 &&
+        {!address_1 ? null :
         <React.Fragment>
           <p> <span className="to_address_1"> {address_1} </span> </p>
           <p> <span className="to_address_2"> {address_2} </span> </p>
@@ -125,17 +127,23 @@ class Statements extends React.Component {
       totalLabel: null,
       dateLabel: null,
       date: null,
-
-      subTotal: null,
-      taxAmount: null,
-      withholdingTaxAmount: null,
-      total: null
+      taxRate: 10,
+      hasWithholdingTax: false,
     }
 
   rowTotal = row => row.quantity * row.price
   subTotal = rows => rows.reduce((sum, v) => sum + v.total, 0)
   taxAmount = (subTotal, taxRate) => Math.floor(subTotal * taxRate / 100)
-  withholdingTaxRate = (subTotal) => subTotal < 1000000 ? 10.21 : 20.42
+  withholdingTaxRate = (subTotal, hasWithholdingTax) => {
+    const upper = subTotal < 1000000
+    let rate = 0
+    if (hasWithholdingTax && upper) {
+      rate = 10.21;
+    } else if (hasWithholdingTax && !upper) {
+      rate = 20.42;
+    }
+    return rate
+  }
   withholdingTaxAmount = (subTotal, withholdingTaxRate) => Math.floor(subTotal * withholdingTaxRate / 100)
   total = (subTotal, taxAmount, withholdingTaxAmount) => subTotal + taxAmount - withholdingTaxAmount
 
@@ -147,11 +155,12 @@ class Statements extends React.Component {
       v.total = this.rowTotal(v)
       return v
       })
-    const taxRate = 10
+    const taxRate = this.props.taxRate;
+    const hasWithholdingTax = this.props.hasWithholdingTax;
 
     const subTotal = this.subTotal(rows)
     const taxAmount = this.taxAmount(subTotal, taxRate)
-    const withholdingTaxRate =  this.withholdingTaxRate(subTotal)
+    const withholdingTaxRate =  this.withholdingTaxRate(subTotal, hasWithholdingTax)
     const withholdingTaxAmount = this.withholdingTaxAmount(subTotal, withholdingTaxRate)
     const total = this.total(subTotal, taxAmount, withholdingTaxAmount)
 
@@ -231,7 +240,7 @@ class Total extends React.Component {
             <td className="w-2/3 border bg-gray-200 text-center p-1"> 消費税( {taxRate} %) </td>
             <td className="w-1/3 border text-right p-1"> {taxAmount.toLocaleString()} </td>
           </tr>
-          {withholdingTaxRate &&
+          {!withholdingTaxRate ? null :
           <tr>
             <td className="w-2/3 border bg-gray-200 text-center p-1"> 源泉徴収( {withholdingTaxRate.toLocaleString()} %) </td>
             <td className="w-1/3 border text-right p-1"> - {withholdingTaxAmount.toLocaleString()} </td>
@@ -294,7 +303,7 @@ class BankInfo extends React.Component {
               <span className="ml-5"> {bank.account.name} </span>
             </p>
           </div>
-          {provision &&
+          {!provision ? null :
           <p className="my-2 pl-5"> {provision} </p>
           }
       </React.Fragment>
